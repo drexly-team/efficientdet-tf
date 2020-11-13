@@ -4,7 +4,7 @@ import hashlib
 from pathlib import Path
 from typing import Union, Any, Tuple
 from urllib.parse import urlparse
-
+import tensorflow as tf
 from efficientdet.models import EfficientDet
 
 
@@ -127,7 +127,7 @@ def load(save_dir_or_url: Union[str, Path],
         weights=None,
         **kwargs)
     
-    model.build([None, *conf.input_size, 3])
+    model.build(tf.TensorShape([None, *conf.input_size, 3]))
 
     print('Loading model weights from {}...'.format(str(model_path)), end='')
     model.load_weights(str(model_path))

@@ -76,7 +76,7 @@ def train(config: efficientdet.config.EfficientDetCompudScaling,
                   loss_weights=[1., 1.])
 
     # Mock calls to create model specs
-    model.build([None, *im_size, 3])
+    model.build(tf.TensorShape([None, *im_size, 3]))
     model.summary()
 
     if kwargs['checkpoint'] is not None:
